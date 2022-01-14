@@ -7,8 +7,15 @@ function createFnArray(params) {
 }
 var arrayFns = []
 for (var i = 0; i <100;i++){
-    arrayFns.push(createFnArray())
+    setTimeout(()=>{
+        arrayFns.push(createFnArray())
+    },100*i)
 }
 setTimeout(()=>{
-    arrayFns = null
-},2000)
+console.log('定时器执行');
+for (let i = 0; i < 50; i++) {
+    setTimeout(()=>{
+        arrayFns.pop()
+    },100*i)
+}
+},100*100)

@@ -86,3 +86,8 @@ foo1.apply(obg3,[1,1,1]) // 后面传数组
 // 这个新对象会被执行prototype
 // 这个新对象会绑定到函数调用的this上
 // 如果函数没有返回其他对象 表达式会返回这个新对象
+function Person() {
+    
+}
+
+new Person()

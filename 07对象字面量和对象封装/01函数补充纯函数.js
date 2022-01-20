@@ -13,3 +13,14 @@
  * 表示在执行一个函数时，除了返回函数值之外，还对调用函数产生了附加的影响，
  * 比如修改了全局变量，修改参数或改变外部的存储
  */
+
+// slice 就是纯函数
+var names = ['abc','bcd','cde','efg']
+var newNames = names.slice(0,3)
+console.log(newNames);
+console.log(names);
+
+// splice 就不是纯函数 会修改原来的数组
+var newNames2 = names.splice(2)
+console.log(newNames2);
+console.log(names);

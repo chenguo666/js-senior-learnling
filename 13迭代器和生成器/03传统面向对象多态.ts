@@ -28,3 +28,4 @@ function calcArea(shape: Shape){
 }
 calcArea(r)
 calcArea(c)
+export {}

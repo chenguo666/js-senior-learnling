@@ -39,6 +39,10 @@ function getDepend(target, key) {
 const objProxy = new Proxy(obj, {
   get: function (target, key, receiver) {
     console.log("get", key);
+
+    const depend = getDepend(target, key);
+    depend.addDepend(target, key);
+
     return Reflect.get(target, key, receiver);
   },
   set: function (target, key, newValue, receiver) {

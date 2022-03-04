@@ -17,3 +17,8 @@
 变量环境和记录
 新版： 每一个执行上下文会关联到一个变量环境（VariableEnvironment）中，在执行代码中变量和函数的声明会作为环境记录（Environment Record）添加到变量环境中。
 对于函数来说，参数也会被作为环境记录添加到环境变量中。
+
+正确收集依赖
+Proxy 的 get 方法中收集对应的函数
+全局 activeReactiveFn 变量
+在 get 中找到 depend 对象，addDepend（全局 activeReactiveFn 变量）

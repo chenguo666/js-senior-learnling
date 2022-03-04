@@ -30,3 +30,4 @@ requestData(
   }
 );
 console.log(1);
+// 更好的方案

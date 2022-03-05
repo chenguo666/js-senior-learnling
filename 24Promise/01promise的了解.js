@@ -31,3 +31,7 @@ requestData(
 );
 console.log(1);
 // 更好的方案
+// function foo() {
+//   return new Promise();
+// }
+// const promise = foo();

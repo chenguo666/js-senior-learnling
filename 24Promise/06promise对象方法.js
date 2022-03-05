@@ -26,3 +26,4 @@ promise
   .then((res) => {
     console.log("res2", res);
   });
+// 如果返回的是一个对象 并且该对象实现了thenable

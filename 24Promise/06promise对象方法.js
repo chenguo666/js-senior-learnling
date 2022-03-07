@@ -27,3 +27,14 @@ promise
     console.log("res2", res);
   });
 // 如果返回的是一个对象 并且该对象实现了thenable
+promise
+  .then((res) => {
+    return {
+      then: function (resolve, reject) {
+        resolve(2222);
+      },
+    };
+  })
+  .then((res) => {
+    console.log(res);
+  });

@@ -143,8 +143,27 @@ class HYPromise {
       });
     });
   }
-  static race(promises) {}
-  static any(promises) {}
+  static race(promises) {
+    return new HYPromise((resolve,reject) => {
+      promises.forEach((promise) => {
+        promise.then(resolve,reject)
+      })
+    })
+  }
+  static any(promises) {
+    // 等到一个成功的结果 所有都失败才reject
+    const reasons = []
+    return new HYPromise((resolve,reject) => {
+      promises.forEach((promise) => {
+        promise.then(resolve,err=>{
+          reasons.push(err)
+          if (reasons.length===promises.length) {
+            reject(new AggregateError(reasons))
+          }
+        })
+      })
+    })
+  }
 }
 const p1 = new HYPromise((resolve) => {
   setTimeout(() => {
@@ -161,13 +180,13 @@ const p3 = new HYPromise((resolve) => {
     resolve(333);
   }, 3000);
 });
-// HYPromise.all([p1, p2, p3])
-//   .then((res) => {
-//     console.log("all", res);
-//   })
-//   .catch((err) => {
-//     console.log("err", err);
-//   });
-HYPromise.allSettled([p1, p2, p3]).then((res) => {
-  console.log("allSettled", res);
-});
+HYPromise.any([p1, p2, p3]).then((res) => {
+  console.log('res',res);
+}).catch((err) => {
+  console.log('err',err.errors);
+})
+// HYPromise.race([p1, p2, p3]).then((res) => {
+//   console.log('res',res);
+// }).catch((err) => {
+//   console.log('err',err);
+// })

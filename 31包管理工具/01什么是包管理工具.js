@@ -19,3 +19,27 @@
 // ^和~的取别
 // ^x.y.z 表示x保持不变 yz永远安装最新的版本
 // ~x.y.z 表示x y保持不变 z永远安装最新的版本
+
+// npm install 原理
+
+// 常用命令 卸载某个依赖包
+// npm uninstall package
+// npm uninstall package --save-dev
+// npm uninstall package -D
+
+// 重新构建
+// npm rebuild
+
+// 清楚缓存
+// npm cache clean
+
+// npx
+// 会自动去当前目录下 的node_module中去找 调用项目中的某个模块命令
+
+// 发布自己的包
+// 1. npm login
+// 2. npm publish
+// 删除发布的包
+// npm unpublish
+// 让发布的包过期
+// npm deprecate

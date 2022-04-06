@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+    <button type="button" id="submit">取消</button>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.2/underscore-umd-min.js"></script> -->
+    <!-- <script src="./02debounce基本实现.js"></script> -->
+    <!-- <script src="./02debounce立即执行.js"></script> -->
+    <!-- <script src="./02debounce取消.js"></script> -->
+    <!-- <script src="./03throttle的基本实现.js"></script> -->
+    <!-- <script src="./03throttle 首次触发.js"></script> -->
+    <script src="./03throttle 取消功能.js"></script>
+    <script>
+      const input1 = document.querySelector("input");
+      const button1 = document.querySelector("button");
+      let counter = 0;
+      const inputChange = function (event) {
+        console.log("发送了网络请求", counter, this, event);
+        counter++;
+        return "aaa";
+      };
+      //   const debounceChange = debounce(inputChange, 3000);
+      //   //   input1.oninput = _.debounce(inputChange, 500);
+      //   //   input1.oninput = _.throttle(inputChange, 2000);
+      //   input1.oninput = debounceChange;
+      //   button1.onclick = function () {
+      //     console.log(1);
+      //     debounceChange.cancel();
+      //   };
+
+      // const debounceChange = throttle(inputChange, 1000);
+      const debounceChange = throttle(inputChange, 1000, {
+        leading: false,
+        trailing: true,
+      }); //首次是否触发
+      input1.oninput = debounceChange;
+      button1.onclick = function () {
+        debounceChange.cancel();
+      };
+    </script>
+  </body>
+</html>
